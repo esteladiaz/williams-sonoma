@@ -1,0 +1,14 @@
+{
+    "name": "williams_sonoma",
+    "version": "1.0.0",
+    "description": "Takehome project for Williams Sonoma for Estela Diaz",
+    "main": "index.js",
+    "scripts": {
+        "sass": "node-sass -w scss/ -o css/"
+    },
+    "author": "Estela Diaz",
+    "license": "MIT",
+    "dependencies": {
+        "node-sass": "^4.12.0"
+    }
+}
