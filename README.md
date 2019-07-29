@@ -3,6 +3,8 @@
 
 Styles used:
 - SASS, added `node-sass` to project dependencies and created script `sass` to watch the `/scss` folder and place processed scss in the `/css` folder.
+- CSS Grid. I first used flexbox but felt CSS Grid would be cleaner for this purpose. The modals are flexbox.
+- Given more time, I'd clean up my sass file. There are a lot of nested elements and it became cluttered as I progressed.
 
 I added the JSON file to a fake endpoint I made on my github, fetching using the Fetch API to asynchronously create DOM elements. If the fetch doesn't work, a different screen renders saying that there was an error. Given more time, I'd add more to this loading screen to make it more engaging or to route the user to more relevant content.
 
