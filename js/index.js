@@ -5,49 +5,47 @@ const url = 'https://raw.githubusercontent.com/esteladiaz/jsontest/master/test.j
 const createNode = element => document.createElement(element)
 
 // function to append children to DOM elements
-const append = (parent, el) => parent.appendChild(el)
+const append = (parent, child) => parent.appendChild(child)
 
+// function to remove children to DOM elements
+const remove = (parent, child) => parent.removeChild(child)
+
+// fetching data from sample endpoint
 fetch(url)
     .then((response) => {
+        /* If the response is ok (or could have used status === 200) 
+           and is of content-type text, as is expected from the sample endpoint,
+           then return the response as a JSON. If it's not the right content-type, show error.
+        */
         if (response.ok && response.headers.get('content-type') === 'text/plain; charset=utf-8') {
             return response.json()
         }
-        throw new Error("Network response was not ok. Please try again.")
+        throw new Error("Doesn't look like we got the right network response. Please try again!")
     })
+    // If the promise resolves, render the page body.
     .then(data => {
         let { groups } = data;
         return groups.map(group => {
-            createProductList(group)
+            renderBody(group)
         })
     })
-    .catch(error => console.error(`Error! ${error}`))
+    // If there's an error, log it to the console.
+    .catch(error => showErrorContent(error))
 
+// If there's an error fetching the data, show this error message content:
+const showErrorContent = error => {
+    // create container for error message
+    let container = document.getElementById('page-container')
+    let errorContainer = createNode('div')
+    errorContainer.classList.add('error')
+    append(container, errorContainer)
 
-const createProductList = group => {
-    // Destructure keys from Object
-    const {
-        id,
-        thumbnail,
-        name,
-        links,
-        priceRange,
-    } = group
-    console.log(id, thumbnail, name, links, priceRange)
+    // add error message text
+    let errorText = createNode('h2')
+    errorText.innerHTML = '<span role="img" aria-label="error-face">😬</span><br/>Oops! Looks like something went wrong.'
+    errorText.classList.add('animated', 'fadeInUp', 'delay-2s')
+    append(errorContainer, errorText)
 
-    // Create container
-    const container = document.getElementById('product-container')
-    let div = createNode('div')
-    div.classList.add('product')
-
-    // Create image
-    let img = createNode('img')
-    img.src = thumbnail.href
-    append(div, img)
-
-    // Create h3 with product name
-    let h3 = createNode('h3')
-    h3.innerHTML = name
-
-    append(div, h3)
-    append(container, div)
+    // log the error to the console if you want ¯\_(ツ)_/¯
+    console.error(error)
 }
