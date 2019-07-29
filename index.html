@@ -6,20 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
     <title>Williams Sonoma | Estela Diaz</title>
     <script src="js/index.js"></script>
+    <script src="js/components.js"></script>
 </head>
 
 <body>
     <div id="page-container">
         <header>
-            <h1>
-                Product Gallery
-            </h1>
+            <img src="./assets/logo.svg" alt="Williams Sonoma Logo" />
+            <h1><a id="wishlist">show wishlist</a></h1>
         </header>
         <div id="product-container"></div>
+    </div>
+    <div id="overlay"></div>
+    <div id="modal">
+        <a id="close">close</a>
     </div>
 </body>
 
