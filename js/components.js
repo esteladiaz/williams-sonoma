@@ -117,6 +117,7 @@ const openWishlist = () => {
             let listItem = createNode('li')
             listItem.innerHTML = item
             listItem.classList.add('wishlist-item')
+            listItem.onclick = removeItemFromWishlist
             append(wishlistItemsList, listItem)
             return listItem
         })
@@ -130,8 +131,10 @@ const openWishlist = () => {
 }
 
 const removeItemFromWishlist = () => {
-    let test = document.querySelector('.wishlistItem')
-    console.log(test)
+    const { wishlist } = localStorage
+    let test = document.querySelector('.wishlist-item')
+    localStorage.removeItem(test.innerHTML)
+    console.log(wishlist, test.innerHTML)
 }
 
 // Create function to clear local storage
