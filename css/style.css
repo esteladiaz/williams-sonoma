@@ -1,39 +1,156 @@
 body {
-    color: #428bca;
-    font-family: "Merriweather", Arial, Helvetica, sans-serif;
-    margin: 0;
-}
-
-body #page-container {
-    margin: 3rem;
-}
-
-body #page-container header {
-    text-align: center;
-}
-
-body #page-container #product-container {
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-body #page-container #product-container .product {
-    background: #fff;
-    border: 1px solid #3578e5;
-    border-radius: 4px;
-    padding: 1rem;
-    transition: all 150ms;
-}
-
-body #page-container #product-container .product img {
+  color: #2d2d2d;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  margin: 0; }
+  body #page-container {
+    margin: 3rem; }
+    body #page-container header {
+      text-align: center; }
+      body #page-container header img {
+        max-width: 400px; }
+      body #page-container header #wishlist {
+        display: inline;
+        transition: color 150ms; }
+        body #page-container header #wishlist:hover {
+          cursor: pointer;
+          color: #ffa3a3; }
+    body #page-container nav {
+      color: #2d2d2d;
+      margin: 0 auto 3rem;
+      max-width: 1484px;
+      padding: 1rem 0; }
+      body #page-container nav ul {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+        padding-left: 0; }
+    body #page-container .error {
+      color: red;
+      text-align: center; }
+      body #page-container .error span {
+        font-size: 3rem; }
+    body #page-container #product-container {
+      display: grid;
+      grid-gap: 2rem;
+      grid-template-columns: repeat(4, minmax(auto, 275px));
+      justify-content: center; }
+      body #page-container #product-container .product {
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        cursor: pointer;
+        position: relative;
+        transition: transform 1s; }
+        body #page-container #product-container .product .image-container {
+          max-height: 250px;
+          overflow: hidden; }
+        body #page-container #product-container .product .special {
+          color: #fff;
+          background: #ffa3a3;
+          left: -10px;
+          padding: 1rem;
+          position: absolute;
+          top: -10px;
+          z-index: 10; }
+        body #page-container #product-container .product img {
+          transition: transform 1s;
+          width: 100%; }
+          body #page-container #product-container .product img:hover {
+            transform: scale(1.2); }
+        body #page-container #product-container .product .product-information {
+          padding: 1rem; }
+          body #page-container #product-container .product .product-information p {
+            margin: 0;
+            padding: 1rem; }
+            body #page-container #product-container .product .product-information p.regular-price {
+              text-decoration: line-through; }
+          body #page-container #product-container .product .product-information img {
+            width: 100%; }
+          body #page-container #product-container .product .product-information h3 {
+            font-weight: 600;
+            margin: 0; }
+          body #page-container #product-container .product .product-information .price {
+            font-weight: 600;
+            position: absolute;
+            bottom: 0; }
+            body #page-container #product-container .product .product-information .price#no-price {
+              color: #D6D6D6; }
+            body #page-container #product-container .product .product-information .price p {
+              padding: 0; }
+              body #page-container #product-container .product .product-information .price p#regular {
+                color: #D6D6D6;
+                text-decoration: line-through; }
+              body #page-container #product-container .product .product-information .price p#selling {
+                font-size: 1.25rem;
+                position: relative;
+                top: -5px; }
+  body #overlay {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-}
-
-body #page-container #product-container .product:hover {
-    transform: translateY(-0.125rem);
-}
-
-body #page-container #product-container .product h3 {
-    margin: 0;
-}
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); }
+    body #overlay.is-open {
+      opacity: 1;
+      pointer-events: auto; }
+  body #modal {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: fixed;
+    top: 30vh;
+    left: 0;
+    right: 0;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100; }
+    body #modal a {
+      display: inline;
+      position: relative; }
+      body #modal a:hover {
+        color: #ffa3a3;
+        cursor: pointer; }
+    body #modal .product-info-container {
+      display: flex;
+      flex-flow: row wrap; }
+      body #modal .product-info-container h3 {
+        margin: 0; }
+      @media screen and (max-width: 600px) {
+        body #modal .product-info-container {
+          flex-flow: column wrap; } }
+      body #modal .product-info-container > div {
+        margin-top: 1rem;
+        width: 50%; }
+        body #modal .product-info-container > div img {
+          width: 100%; }
+        body #modal .product-info-container > div.cta-container {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-evenly;
+          width: 100%; }
+          body #modal .product-info-container > div.cta-container button {
+            background-color: transparent;
+            border-radius: 4px;
+            border: 1px solid #2d2d2d;
+            padding: 0.5rem 1rem; }
+          body #modal .product-info-container > div.cta-container button:first-child {
+            background: #ffa3a3; }
+    body #modal #close {
+      position: absolute;
+      border: 0;
+      right: 10px;
+      top: 10px;
+      font-size: 20px;
+      transition: color 350ms; }
+    body #modal.is-open {
+      opacity: 1;
+      pointer-events: auto; }
