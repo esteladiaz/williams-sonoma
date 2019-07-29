@@ -43,18 +43,18 @@ body {
         #product-container {
             display: grid;
             grid-gap: 2rem;
-            grid-template-columns: repeat(4, minmax(auto, 275px));
+            grid-template-columns: repeat(auto-fit, minmax(auto, 275px));
             justify-content: center;
             .product {
                 background: #fff;
-                border: 1px solid $lightGrey;
+                border-radius: 10%;
                 cursor: pointer;
                 position: relative;
                 transition: transform 1s;
-                .image-container {
-                    max-height: 250px;
-                    overflow: hidden;
-                }
+                background-size: cover;
+                background-repeat: no-repeat;
+                min-height: 275px;
+                text-align: right;
                 .special {
                     color: #fff;
                     background: $secondary;
@@ -72,38 +72,41 @@ body {
                     }
                 }
                 .product-information {
+                    width: 60%;
+                    float: right;
                     padding: 1rem;
                     p {
                         margin: 0;
                         padding: 1rem;
-                        &.regular-price {
-                            text-decoration: line-through;
-                        }
                     }
                     img {
                         width: 100%;
                     }
                     h3 {
                         font-weight: 600;
+                        font-size: 1.5rem;
                         margin: 0;
                     }
                     .price {
                         font-weight: 600;
                         position: absolute;
                         bottom: 0;
+                        left: 0;
+                        padding: 0.5rem;
+                        background: #e8e8e8;
+                        text-align: left;
                         &#no-price {
-                            color: #D6D6D6;
+                            color: $secondary;
                         }
                         p {
                             padding: 0;
                             &#regular {
-                                color: #D6D6D6;
+                                color: $secondary;
                                 text-decoration: line-through;
                             }
                             &#selling {
-                                font-size: 1.25rem;
+                                font-size: 1.5rem;
                                 position: relative;
-                                top: -5px;
                             }
                         }
                     }
@@ -136,13 +139,24 @@ body {
         top: 30vh;
         left: 0;
         right: 0;
-        max-width: 300px;
         margin: 0 auto;
         padding: 30px;
         background: #fff;
         border-radius: 4px;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
         z-index: 100;
+        @media (min-width: 801px) {
+            max-width: 500px;
+        }
+        @media (min-width: 600px) and (max-width: 800px) {
+            max-width: 450px;
+        }
+        @media (max-width: 599px) {
+            max-width: 70%;
+        }
+        @media (max-width: 350px) {
+            top: 10vh;
+        }
         a {
             display: inline;
             position: relative;
@@ -162,7 +176,9 @@ body {
             }
             >div {
                 margin-top: 1rem;
-                width: 50%;
+                @media (min-width: 600px) {
+                    width: 50%;
+                }
                 img {
                     width: 100%;
                 }
@@ -175,6 +191,7 @@ body {
                         background-color: transparent;
                         border-radius: 4px;
                         border: 1px solid $primary;
+                        font-size: 1rem;
                         padding: 0.5rem 1rem;
                     }
                     button:first-child {
@@ -194,6 +211,28 @@ body {
         &.is-open {
             opacity: 1;
             pointer-events: auto;
+        }
+        #clear-storage {
+            background-color: transparent;
+            border: 1px solid $primary;
+            border-radius: 4px;
+            border: 1px solid $primary;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+        }
+        #wishlist-items {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            h2 {
+                text-align: center;
+            }
+            li {
+                margin: 1rem 0;
+                &:hover {
+                    text-decoration: line-through;
+                }
+            }
         }
     }
 }

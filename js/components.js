@@ -34,13 +34,7 @@ const renderBody = group => {
     // Check if it's a special product from the priceRange keys. If so, add a flag!
     isProductSpecial(product, priceRange)
 
-    // Create image container, create image, append image to image container, then append image container to product element
-    let imageContainer = createNode('div')
-    imageContainer.classList.add('image-container')
-    let img = createNode('img')
-    img.src = thumbnail.href
-    append(imageContainer, img)
-    append(product, imageContainer)
+    product.style = `background-image: url(${thumbnail.href});`
 
     // create container for product information
     let productInformation = createNode('div')
@@ -122,10 +116,28 @@ const openWishlist = () => {
         items.map(item => {
             let listItem = createNode('li')
             listItem.innerHTML = item
+            listItem.classList.add('wishlist-item')
             append(wishlistItemsList, listItem)
             return listItem
         })
+
+        let clearStorageButton = createNode('button')
+        clearStorageButton.id = 'clear-storage'
+        clearStorageButton.onclick = clearStorage
+        clearStorageButton.innerHTML = "Clear list"
+        append(wishlistItemsList, clearStorageButton)
     }
+}
+
+const removeItemFromWishlist = () => {
+    let test = document.querySelector('.wishlistItem')
+    console.log(test)
+}
+
+// Create function to clear local storage
+const clearStorage = () => {
+    localStorage.clear()
+    closeModal()
 }
 
 // Create function to open "More information" modal
